@@ -9,17 +9,27 @@
 </head>
 <body>
   <div id="app">
-    {{msg}} <br>
-    {{6<3 ? msg:a}}
-    {{b = 3*a}}
+    {{data}}
   </div>
   <script>
     var app = new Vue({
-      el:"#app",
-      data:{
-        msg:"vue学习开始了",
-        a : 2
+      el: "#app",
+      data: {
+        data: ""
+      },
+      mounted: function(){ 
+        this1 = this
+        this.xxx = setInterval(() => {
+        this1.data = new Date()
+        },500)
+      },
+    //vue示例销毁前清除闹钟
+      beforeDestroy: function(){
+        if(this.xxx){
+          clearInterval(this.xxx)
+        }
       }
+      
     })
   </script>
 </body>
