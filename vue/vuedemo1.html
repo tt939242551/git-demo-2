@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./Vue.v2.6.10.js"></script>
+  <style>
+    .action{
+    color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    {{msg}} <br>
+    {{msg |filter('红')}} <br>
+    <span v-text="msg" v-bind:class="className"></span><br>
+    <span v-html="apple"></span><br>
+    <button v-on:click="addclass">点我</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el:"#app",
+      data: {
+        msg : "这是一个苹果",
+        apple : "<span style='color:red'>苹果</span>",
+        className : null
+      },
+      filters : {
+        filter : function(a,b){
+         return b + a.slice(4,6);
+        }
+      },
+      methods : {
+        addclass : function(){
+          if(this.className === null){
+              this.className = "action"
+          } else {
+            this.className = null
+          }
+        }
+      }
+
+    })
+  </script>
+  
+</body>
+</html>
