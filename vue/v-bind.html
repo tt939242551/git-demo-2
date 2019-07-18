@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./Vue.v2.6.10.js"></script>
+  <style>
+   .color1 {
+     color: blue
+   }
+   .color2 {
+     background : red
+   }
+   .color3 {
+     border: 2px solid yellow
+   }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <span :class = "className1">苹果</span><br>
+    <span :class = "[className1,className2]">苹果</span><br>
+    <span :class = "{color1:value1,color2:value2,color3:value3}">苹果</span>
+    <button @click = "changeColor" :style = "xxx">点我</button>
+  </div>
+  <script>
+    var app = new Vue({
+      el : "#app",
+      data : {
+        className1 : 'color1',
+        className2 : 'color2',
+        value1 : true,
+        value2 : false,
+        value3 : true,
+        xxx : {
+          color : 'red' ,
+          background : 'yellow'
+        },
+      },
+      methods : {
+        changeColor : function(){
+          this.value1 = !this.value1,
+          this.value3 = !this.value3,
+          this.className1 = this.className1 ? null : 'color1'
+        }
+      }
+    })
+  </script>
+</body>
+</html>
