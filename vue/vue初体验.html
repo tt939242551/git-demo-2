@@ -9,16 +9,15 @@
 </head>
 <body>
   <div id="app">
-    {{msg}} <br>
-    {{6<3 ? msg:a}}
-    {{b = 3*a}}
+    <ol>
+      <li v-for = "(value,index) in arr"> {{index}} - {{value}} </li>
+    </ol>
   </div>
   <script>
     var app = new Vue({
       el:"#app",
       data:{
-        msg:"vue学习开始了",
-        a : 2
+        arr : ["香蕉","苹果","西瓜"]
       }
     })
   </script>

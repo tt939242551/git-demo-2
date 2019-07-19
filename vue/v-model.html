@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./Vue.v2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="msg"><br>
+    {{msg}} <br>
+    <label><input type="checkbox" v-model="fruits" value="苹果">苹果</label>
+    <label><input type="checkbox" v-model="fruits" value="香蕉">香蕉</label>
+    <label><input type="checkbox" v-model="fruits" value="橘子">橘子</label>
+    <div>你选择的水果是:{{fruits}}</div>
+    <label><input type="radio" v-model="fruit" value="苹果">苹果</label>
+    <label><input type="radio" v-model="fruit" value="香蕉">香蕉</label>
+    <label><input type="radio" v-model="fruit" value="橘子">橘子</label>
+    <div>你选择的水果是:{{fruit}}</div>
+  </div>
+  <script>
+    var app = new Vue({
+      el : "#app",
+      data : {
+        msg : "",
+        fruits:[],
+        fruit: "",
+      }
+    })
+  </script>
+</body>
+</html>
