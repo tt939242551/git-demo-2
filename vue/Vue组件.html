@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./Vue.v2.6.10.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app1">
+    <component1 v-bind:xxx="msg"></component1>    
+  </div>
+  <script>
+  var app1 = new Vue({
+    el : "#app1",
+    data: {
+      msg: "我是父组件的内容",
+    },
+    components : {
+      "component1": {
+        template: "<div>{{yyy}}{{xxx}}</div>",
+        props:["xxx"],
+        data :function(){
+          return {
+            yyy : this.xxx
+          }
+        }
+      }
+    }
+  }) 
+  </script>
+  <div id="app2">
+    <input type="text" v-model="price"><br>
+    <component1 :change="[price,msg]" v-on:changes="changesmsg"></component1>
+    <component2 v-bind:change="[price,msg]" v-on:changes="changesmsg"></component2><br>
+    您的余额是<span>{{msg}}</span>   
+  </div>
+  <script>
+  var app2 = new Vue({
+    el : "#app2",
+    data: {
+      msg: "1000",
+      price: "100",
+    },
+    methods:{
+          changesmsg : function(xxx){
+            this.msg = xxx
+          }},
+    components : {
+      "component1": {
+        props:['change'],
+        template: "<button v-on:click='changemsg'> +{{price}}</button>",
+        data :function(){
+          return {
+            price: this.change[0],
+            msg : this.change[1],
+          }
+        },
+        methods:{
+          changemsg : function(){
+            this.msg = (this.msg-0) + (this.price-0),
+            this.$emit('changes',this.msg)
+          }
+        }
+      },
+      "component2": {
+        props:['change'],
+        template: "<button v-on:click='changemsg'> -{{price}}</button>",
+        data :function(){
+          return {
+            price: this.change[0],
+            msg : this.change[1],
+          }
+        },
+        methods:{
+          changemsg : function(){
+            this.msg = (this.msg-0) - (this.price-0),
+            this.$emit('changes',this.msg)
+          }
+        },
+      },
+    }
+  })
+  </script>
+</body>
+</html>
