@@ -9,7 +9,7 @@
 </head>
 <body>
   <div id="app">
-    请输入产品单价:<input type="text" v-model="price"><br>
+    请输入单价:<input type="text" v-model="price"><br>
     <component1 :change="[price,msg]" v-on:changes="changesmsg"></component1>
     <component2 v-bind:change="[price,msg]" v-on:changes="changesmsg"></component2><br>
     您的余额是<span>{{msg}}</span>   
